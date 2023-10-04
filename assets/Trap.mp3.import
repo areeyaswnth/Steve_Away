@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Trap.mp3-491d6c690af010492252f084981901b9.mp3str"
+
+[deps]
+
+source_file="res://assets/Trap.mp3"
+dest_files=[ "res://.import/Trap.mp3-491d6c690af010492252f084981901b9.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

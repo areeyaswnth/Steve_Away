@@ -1,0 +1,348 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://scene/Button/Down_Button.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scene/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scene/Box.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scene/Button/Up_button.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scene/Button/Left_button.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scene/FinalState.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scene/Button/Right_Button.tscn" type="PackedScene" id=7]
+[ext_resource path="res://script/stage/Stage8.gd" type="Script" id=8]
+[ext_resource path="res://scene/Background.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/Wood board.png" type="Texture" id=10]
+[ext_resource path="res://assets/Icon/reload.png" type="Texture" id=11]
+[ext_resource path="res://assets/b1_black.png" type="Texture" id=12]
+[ext_resource path="res://assets/Icon/home.png" type="Texture" id=13]
+[ext_resource path="res://assets/b1.png" type="Texture" id=14]
+[ext_resource path="res://assets/Icon/forward.png" type="Texture" id=15]
+[ext_resource path="res://assets/UI_Flat_Banner_02_Upward.png" type="Texture" id=16]
+[ext_resource path="res://assets/Icon/play.png" type="Texture" id=17]
+[ext_resource path="res://assets/button-click.mp3" type="AudioStream" id=18]
+[ext_resource path="res://assets/Interface.png" type="Texture" id=19]
+[ext_resource path="res://scene/DFA/DFA8.tscn" type="PackedScene" id=20]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color : hint_color = vec4(1.0);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+
+const vec2 OFFSETS[8] = {
+	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
+	vec2(1, -1), vec2(1, 0), vec2(1, 1)
+};
+
+void fragment() {
+	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+	float outline = 0.0;
+	
+	for (int i = 0; i < OFFSETS.length(); i++) {
+		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a;
+	}
+	outline = min(outline, 1.0);
+	
+	vec4 color = texture(TEXTURE, UV);
+	COLOR = mix(color, line_color, outline - color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
+shader_param/line_color = Color( 1, 1, 1, 1 )
+shader_param/line_thickness = 1.0
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color : hint_color = vec4(1.0);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+
+const vec2 OFFSETS[8] = {
+	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
+	vec2(1, -1), vec2(1, 0), vec2(1, 1)
+};
+
+void fragment() {
+	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+	float outline = 0.0;
+	
+	for (int i = 0; i < OFFSETS.length(); i++) {
+		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a;
+	}
+	outline = min(outline, 1.0);
+	
+	vec4 color = texture(TEXTURE, UV);
+	COLOR = mix(color, line_color, outline - color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 3 )
+shader_param/line_color = Color( 1, 1, 1, 1 )
+shader_param/line_thickness = 1.0
+
+[sub_resource type="Theme" id=6]
+
+[sub_resource type="DynamicFontData" id=9]
+antialiased = false
+font_path = "res://assets/Daydream.ttf"
+
+[sub_resource type="DynamicFont" id=8]
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 9 )
+
+[node name="Stage" type="Node2D"]
+script = ExtResource( 8 )
+
+[node name="Background" parent="." instance=ExtResource( 9 )]
+position = Vector2( 512, 300 )
+scale = Vector2( 4, 4 )
+frame = 0
+
+[node name="origin_box" type="Node2D" parent="."]
+material = SubResource( 4 )
+position = Vector2( 528, 550 )
+scale = Vector2( 3.7, 3.7 )
+
+[node name="WoodBoard" type="Sprite" parent="origin_box"]
+material = SubResource( 5 )
+position = Vector2( -0.810822, -3.8147e-06 )
+scale = Vector2( 0.975676, 0.975676 )
+texture = ExtResource( 10 )
+
+[node name="Up_button" parent="origin_box" instance=ExtResource( 4 )]
+position = Vector2( -35.9459, -0.270279 )
+scale = Vector2( 0.27027, 0.27027 )
+
+[node name="Right_Button" parent="origin_box" instance=ExtResource( 7 )]
+position = Vector2( -12.4324, -1.52588e-05 )
+scale = Vector2( 0.27027, 0.27027 )
+
+[node name="Left_button" parent="origin_box" instance=ExtResource( 5 )]
+position = Vector2( 34.5946, 3.05176e-05 )
+scale = Vector2( 0.27027, 0.27027 )
+
+[node name="Down_button" parent="origin_box" instance=ExtResource( 1 )]
+position = Vector2( 10.8108, 3.05176e-05 )
+scale = Vector2( 0.27027, 0.27027 )
+
+[node name="Box_stage" type="Node2D" parent="."]
+
+[node name="Box" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 375, 90 )
+
+[node name="Box2" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 452, 91 )
+
+[node name="Box3" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 529, 93 )
+
+[node name="Box4" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 611, 94 )
+
+[node name="Box5" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 609, 179 )
+
+[node name="Box6" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 688, 181 )
+
+[node name="Box7" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 688, 262 )
+
+[node name="Box8" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 685, 339 )
+
+[node name="Box9" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 606, 339 )
+
+[node name="Box10" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 605, 416 )
+
+[node name="Box11" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 524, 415 )
+
+[node name="Box12" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 446, 413 )
+
+[node name="Box13" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 368, 411 )
+
+[node name="TNT" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 690, 95 )
+
+[node name="TNT2" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 373, 176 )
+
+[node name="TNT3" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 450, 177 )
+
+[node name="TNT4" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 528, 179 )
+
+[node name="TNT5" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 372, 257 )
+
+[node name="TNT6" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 450, 257 )
+
+[node name="TNT7" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 529, 257 )
+
+[node name="TNT8" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 608, 259 )
+
+[node name="TNT9" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 450, 337 )
+
+[node name="TNT10" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 527, 338 )
+
+[node name="TNT11" parent="Box_stage" instance=ExtResource( 3 )]
+position = Vector2( 685, 417 )
+
+[node name="Box" type="Node2D" parent="."]
+
+[node name="Final" parent="." instance=ExtResource( 6 )]
+position = Vector2( 376, 323 )
+rotation = 0.0165604
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 296, 88 )
+rotation = 0.0165604
+
+[node name="Control" type="Control" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="Home" type="TextureButton" parent="Control"]
+margin_left = 811.0
+margin_top = 40.0
+margin_right = 1002.0
+margin_bottom = 96.0
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 12 )
+expand = true
+
+[node name="Home" type="Sprite" parent="Control/Home"]
+position = Vector2( 30, 33 )
+scale = Vector2( 0.050293, 0.050293 )
+texture = ExtResource( 13 )
+
+[node name="Label" type="Label" parent="Control/Home"]
+margin_left = 78.0
+margin_top = 22.0
+margin_right = 182.0
+margin_bottom = 79.0
+theme = SubResource( 6 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "HOME
+"
+
+[node name="Run" type="TextureButton" parent="Control"]
+margin_left = 808.0
+margin_top = 440.0
+margin_right = 999.0
+margin_bottom = 496.0
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 12 )
+expand = true
+
+[node name="Home" type="Sprite" parent="Control/Run"]
+position = Vector2( 30, 33 )
+scale = Vector2( 0.050293, 0.050293 )
+texture = ExtResource( 17 )
+
+[node name="Label" type="Label" parent="Control/Run"]
+margin_left = 78.0
+margin_top = 22.0
+margin_right = 182.0
+margin_bottom = 79.0
+theme = SubResource( 6 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "RUN"
+
+[node name="retry" type="TextureButton" parent="Control"]
+margin_left = 811.0
+margin_top = 104.0
+margin_right = 1002.0
+margin_bottom = 160.0
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 12 )
+expand = true
+
+[node name="Reload" type="Sprite" parent="Control/retry"]
+position = Vector2( 29, 32 )
+scale = Vector2( 0.0625001, 0.0562501 )
+texture = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="Control/retry"]
+margin_left = 77.0
+margin_top = 21.0
+margin_right = 181.0
+margin_bottom = 78.0
+theme = SubResource( 6 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "RETRY"
+
+[node name="Next" type="TextureButton" parent="Control"]
+margin_left = 808.0
+margin_top = 511.0
+margin_right = 999.0
+margin_bottom = 567.0
+texture_normal = ExtResource( 14 )
+texture_pressed = ExtResource( 12 )
+texture_hover = ExtResource( 12 )
+expand = true
+
+[node name="Home" type="Sprite" parent="Control/Next"]
+position = Vector2( 30, 33 )
+scale = Vector2( 0.050293, 0.050293 )
+texture = ExtResource( 15 )
+
+[node name="Label" type="Label" parent="Control/Next"]
+margin_left = 78.0
+margin_top = 22.0
+margin_right = 182.0
+margin_bottom = 79.0
+theme = SubResource( 6 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "NEXT"
+
+[node name="UiFlatBanner02Upward" type="Sprite" parent="Control"]
+position = Vector2( 124, 68 )
+scale = Vector2( 2.75, 2.75 )
+texture = ExtResource( 16 )
+
+[node name="Label" type="Label" parent="Control"]
+margin_left = 77.0
+margin_top = 52.0
+margin_right = 187.0
+margin_bottom = 109.0
+theme = SubResource( 6 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 8 )
+text = "Stage  5
+"
+
+[node name="button" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+
+[node name="Interface" type="Sprite" parent="."]
+position = Vector2( 168, 292 )
+scale = Vector2( 4.55, 4.55 )
+texture = ExtResource( 19 )
+
+[node name="DFA8" parent="." instance=ExtResource( 20 )]
+position = Vector2( -10, 209 )
+scale = Vector2( 0.3, 0.3 )
+
+[connection signal="pressed" from="Control/Home" to="." method="_on_Home_pressed"]
+[connection signal="pressed" from="Control/Run" to="." method="_on_Run_pressed"]
+[connection signal="pressed" from="Control/retry" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="Control/Next" to="." method="_on_Next_pressed"]

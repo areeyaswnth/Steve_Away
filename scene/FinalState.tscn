@@ -1,0 +1,80 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://script/FinalState.gd" type="Script" id=1]
+[ext_resource path="res://assets/treasure/treasure (animate)/treasure4.png" type="Texture" id=2]
+[ext_resource path="res://assets/treasure/treasure (animate)/treasure1.png" type="Texture" id=3]
+[ext_resource path="res://assets/treasure/treasure (animate)/treasure2.png" type="Texture" id=4]
+[ext_resource path="res://assets/treasure/treasure (animate)/treasure3.png" type="Texture" id=5]
+[ext_resource path="res://assets/Final/Found tresure/Found treasure(animate)/Found treasure1.png" type="Texture" id=6]
+[ext_resource path="res://assets/Final/Found tresure/Found treasure(animate)/Found treasure2.png" type="Texture" id=7]
+[ext_resource path="res://assets/Lost key steve (animate)/4.png" type="Texture" id=8]
+[ext_resource path="res://assets/Lost key steve (animate)/1.png" type="Texture" id=9]
+[ext_resource path="res://assets/Lost key steve (animate)/2.png" type="Texture" id=10]
+[ext_resource path="res://assets/Lost key steve (animate)/3.png" type="Texture" id=11]
+[ext_resource path="res://assets/ho.mp3" type="AudioStream" id=12]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 23.5, 21 )
+
+[sub_resource type="Shader" id=3]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color : hint_color = vec4(1.0);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+
+const vec2 OFFSETS[8] = {
+	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
+	vec2(1, -1), vec2(1, 0), vec2(1, 1)
+};
+
+void fragment() {
+	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+	float outline = 0.0;
+	
+	for (int i = 0; i < OFFSETS.length(); i++) {
+		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a;
+	}
+	outline = min(outline, 1.0);
+	
+	vec4 color = texture(TEXTURE, UV);
+	COLOR = mix(color, line_color, outline - color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 3 )
+shader_param/line_color = Color( 1, 1, 1, 1 )
+shader_param/line_thickness = 1.0
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "Final",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "NotKey",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Final" type="Area2D"]
+scale = Vector2( 2, 2 )
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -0.5, 0 )
+shape = SubResource( 1 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+material = SubResource( 4 )
+frames = SubResource( 2 )
+playing = true
+
+[node name="ho" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )

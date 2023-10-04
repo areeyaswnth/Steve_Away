@@ -1,0 +1,197 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/Background/sea.png" type="Texture" id=1]
+[ext_resource path="res://assets/Background/sky.png" type="Texture" id=2]
+[ext_resource path="res://assets/Icon/home.png" type="Texture" id=3]
+[ext_resource path="res://assets/b1.png" type="Texture" id=4]
+[ext_resource path="res://assets/b1_black.png" type="Texture" id=5]
+[ext_resource path="res://scene/DevTeam.gd" type="Script" id=6]
+[ext_resource path="res://assets/button-click.mp3" type="AudioStream" id=7]
+
+[sub_resource type="Theme" id=13]
+
+[sub_resource type="DynamicFontData" id=12]
+antialiased = false
+font_path = "res://assets/Daydream.ttf"
+
+[sub_resource type="DynamicFont" id=14]
+outline_size = 4
+outline_color = Color( 0, 0, 0, 1 )
+font_data = SubResource( 12 )
+
+[sub_resource type="DynamicFontData" id=10]
+antialiased = false
+override_oversampling = 2.0
+font_path = "res://assets/Daydream.ttf"
+
+[sub_resource type="DynamicFont" id=15]
+size = 20
+outline_size = 4
+outline_color = Color( 0.286275, 0.101961, 0.0235294, 1 )
+font_data = SubResource( 10 )
+
+[node name="DevTeam" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Sky" type="Sprite" parent="."]
+position = Vector2( 1396, -234 )
+scale = Vector2( 3.06757, 3.06757 )
+texture = ExtResource( 2 )
+offset = Vector2( 104.643, 129.093 )
+
+[node name="Sky2" type="Sprite" parent="Sky"]
+position = Vector2( -368.044, -6.10352e-05 )
+texture = ExtResource( 2 )
+offset = Vector2( 104.643, 129.093 )
+
+[node name="Sky3" type="Sprite" parent="Sky"]
+position = Vector2( 759.56, 0.0001297 )
+texture = ExtResource( 2 )
+offset = Vector2( 104.643, 129.093 )
+
+[node name="Sky4" type="Sprite" parent="Sky"]
+position = Vector2( 380.106, 6.10352e-05 )
+texture = ExtResource( 2 )
+offset = Vector2( 104.643, 129.093 )
+
+[node name="Sea" type="Sprite" parent="."]
+position = Vector2( 508, 476 )
+scale = Vector2( 2.71094, 2.71094 )
+texture = ExtResource( 1 )
+
+[node name="Home" type="TextureButton" parent="."]
+margin_left = 825.0
+margin_top = 519.0
+margin_right = 1016.0
+margin_bottom = 575.0
+texture_normal = ExtResource( 4 )
+texture_pressed = ExtResource( 5 )
+texture_hover = ExtResource( 5 )
+expand = true
+
+[node name="Home" type="Sprite" parent="Home"]
+position = Vector2( 30, 33 )
+scale = Vector2( 0.050293, 0.050293 )
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="Home"]
+margin_left = 78.0
+margin_top = 22.0
+margin_right = 182.0
+margin_bottom = 79.0
+theme = SubResource( 13 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 14 )
+text = "HOME
+"
+
+[node name="button" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="Label3" type="Label" parent="."]
+margin_left = 127.0
+margin_top = 98.0
+margin_right = 710.0
+margin_bottom = 131.5
+rect_pivot_offset = Vector2( 106, 34 )
+custom_fonts/font = SubResource( 15 )
+text = "Game Dev                       64011028   Areeya"
+
+[node name="Label4" type="Label" parent="."]
+margin_left = 130.0
+margin_top = 138.0
+margin_right = 743.0
+margin_bottom = 171.5
+rect_pivot_offset = Vector2( 237, 17 )
+custom_fonts/font = SubResource( 15 )
+text = "DFA   DESIGN               64011289   Suppawit"
+
+[node name="Label5" type="Label" parent="."]
+margin_left = 415.0
+margin_top = 181.0
+margin_right = 998.0
+margin_bottom = 214.5
+custom_fonts/font = SubResource( 15 )
+text = "64011199    Passamon"
+
+[node name="Label6" type="Label" parent="."]
+margin_left = 413.0
+margin_top = 218.0
+margin_right = 996.0
+margin_bottom = 251.5
+custom_fonts/font = SubResource( 15 )
+text = "64010211     Napat"
+
+[node name="Label7" type="Label" parent="."]
+margin_left = 413.0
+margin_top = 218.0
+margin_right = 996.0
+margin_bottom = 251.5
+custom_fonts/font = SubResource( 15 )
+text = "64010211     Napat"
+
+[node name="Label8" type="Label" parent="."]
+margin_left = 412.0
+margin_top = 255.0
+margin_right = 995.0
+margin_bottom = 288.5
+custom_fonts/font = SubResource( 15 )
+text = "64011091    Chawin"
+
+[node name="Label9" type="Label" parent="."]
+margin_left = 413.0
+margin_top = 291.0
+margin_right = 996.0
+margin_bottom = 324.5
+custom_fonts/font = SubResource( 15 )
+text = "64011225   Pattaradanai"
+
+[node name="Label10" type="Label" parent="."]
+margin_left = 410.0
+margin_top = 327.0
+margin_right = 993.0
+margin_bottom = 360.5
+custom_fonts/font = SubResource( 15 )
+text = "64011131     Tanakrit"
+
+[node name="Label11" type="Label" parent="."]
+margin_left = 407.0
+margin_top = 363.0
+margin_right = 990.0
+margin_bottom = 396.5
+custom_fonts/font = SubResource( 15 )
+text = "64011013    Ammari"
+
+[node name="Label12" type="Label" parent="."]
+margin_left = 129.0
+margin_top = 403.0
+margin_right = 799.0
+margin_bottom = 436.5
+custom_fonts/font = SubResource( 15 )
+text = "ART                                      64011258    Rungphailin"
+
+[node name="Label13" type="Label" parent="."]
+margin_left = 404.0
+margin_top = 442.0
+margin_right = 987.0
+margin_bottom = 475.5
+custom_fonts/font = SubResource( 15 )
+text = "64011100    Thitaporn"
+
+[node name="Label14" type="Label" parent="."]
+margin_left = 406.0
+margin_top = 477.0
+margin_right = 989.0
+margin_bottom = 510.5
+custom_fonts/font = SubResource( 15 )
+text = "64011210    Pimchanok"
+
+[node name="Label15" type="Label" parent="."]
+margin_left = 402.0
+margin_top = 512.0
+margin_right = 985.0
+margin_bottom = 545.5
+custom_fonts/font = SubResource( 15 )
+text = "64011308   Supitcha"
+
+[connection signal="pressed" from="Home" to="." method="_on_Home_pressed"]

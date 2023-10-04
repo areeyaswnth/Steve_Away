@@ -1,0 +1,126 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/stage/ST7.png" type="Texture" id=1]
+[ext_resource path="res://assets/stage/ST.png" type="Texture" id=2]
+[ext_resource path="res://scene/DFA/DFA7.gd" type="Script" id=3]
+
+[node name="DFA7" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="stage" type="Sprite" parent="."]
+position = Vector2( 287.25, 246.892 )
+scale = Vector2( 0.848584, 0.848584 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="StFake_10" type="Sprite" parent="."]
+position = Vector2( 122.75, 44.75 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="St1" type="Sprite" parent="."]
+position = Vector2( 300, 371 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="St2" type="Sprite" parent="."]
+position = Vector2( 225, 372 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="St4" type="Sprite" parent="."]
+position = Vector2( 148, 371 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="St5" type="Sprite" parent="."]
+position = Vector2( 374, 369 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="StFake_1" type="Sprite" parent="."]
+position = Vector2( 269, 119 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="St7" type="Sprite" parent="."]
+position = Vector2( 423, 199 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="StFake_3" type="Sprite" parent="."]
+position = Vector2( 422, 122 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="St9" type="Sprite" parent="."]
+position = Vector2( 452, 372 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="St10" type="Sprite" parent="."]
+position = Vector2( 452, 297 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="St11" type="Sprite" parent="."]
+position = Vector2( 375, 296 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="StFake_9" type="Sprite" parent="."]
+position = Vector2( 120, 121 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="StFake_5" type="Sprite" parent="."]
+position = Vector2( 196, 118 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="TNT" type="Sprite" parent="."]
+position = Vector2( 179, 230 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="St15" type="Sprite" parent="."]
+position = Vector2( 300, 298 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="St16" type="Sprite" parent="."]
+position = Vector2( 229, 297 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="StFake_2" type="Sprite" parent="."]
+position = Vector2( 344, 120 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="trap2" type="Sprite" parent="."]
+position = Vector2( 301, 200 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="init" type="Sprite" parent="."]
+position = Vector2( 151, 295 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="FN" type="Sprite" parent="."]
+position = Vector2( 149, 453 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="trap" type="Sprite" parent="."]
+position = Vector2( 333, 453 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
+
+[node name="Fake_FN" type="Sprite" parent="."]
+position = Vector2( 304, 54 )
+scale = Vector2( 0.604167, 0.604167 )
+texture = ExtResource( 2 )
